@@ -1,23 +1,46 @@
 import React from 'react'
-import {Router, Route } from 'react-router-dom'
-import {createBrowserHistory} from 'history'
+import {BrowserRouter  } from 'react-router-dom'
+import RouteWithSubRoutes from '@/components/RouteWithSubRoutes'
 import App from '@/App'
 import Home from '@/Tabs/Home'
 import Person from '@/Tabs/Person'
+import Tabs from '@/Tabs/Tabs'
+import Login from '@/page/Login'
 
-const customHistory = createBrowserHistory();
+const routes = [
+    {
+        path:'/login',
+        component: Login,
+
+    },
+    {
+        path: '/',
+        component: App,
+        routes:[
+            {
+                path: "/home",
+                component: Home,
+            },
+            {
+                path:'/person',
+                component:Person
+            },
+        ]
+    },
+    {
+        path: '/tabs',
+        component: Tabs,
+    },
+];
 
 class RouterMap extends React.Component {
     render () {
         return (
-            <div>
-                <Router history={customHistory}>
-                    <App>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/person" component={Person} />
-                    </App>
-                </Router>
-            </div>
+            <BrowserRouter>
+                {routes.map((route, i) => (
+                    <RouteWithSubRoutes key={i} {...route} />
+                ))}
+            </BrowserRouter>
         )
     }
 }
