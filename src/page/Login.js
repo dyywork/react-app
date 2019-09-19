@@ -16,7 +16,7 @@ class Login extends Component {
     login=()=> {
       console.log(this.props)
         const {history} = this.props;
-      history.push('/home')
+      history.push('/app/home')
     };
 
     render() {

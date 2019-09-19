@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 class TabsMenu extends Component {
     render() {
         const {children,hidden,location} =this.props;
+        console.log('children',children)
         return (
             <div style={{ position: 'fixed', width: '100%', bottom: 0 }}>
             <TabBar
@@ -28,11 +29,11 @@ class TabsMenu extends Component {
                             background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
                         />
                         }
-                        selected={location.pathname === '/home'}
+                        selected={location.pathname === '/app/home'}
                         onPress={() => {
-                            this.props.history.push('/home');
+                            this.props.history.push('/app/home');
                             this.setState({
-                                selectedTab: '/home',
+                                selectedTab: '/app/home',
                             });
                         }}
                         data-seed="logId"
@@ -58,11 +59,11 @@ class TabsMenu extends Component {
                         }
                         title="person"
                         key="Koubei"
-                        selected={location.pathname === '/person'}
+                        selected={location.pathname === '/app/person'}
                         onPress={() => {
-                            this.props.history.push('/person')
+                            this.props.history.push('/app/person')
                             this.setState({
-                                selectedTab: '/person',
+                                selectedTab: '/app/person',
                             });
                         }}
                         data-seed="logId1"

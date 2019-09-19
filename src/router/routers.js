@@ -9,20 +9,23 @@ import Login from '@/page/Login'
 
 const routes = [
     {
-        path:'/login',
-        component: Login,
-
+      path:'/',
+        redirect: '/login'
     },
     {
-        path: '/',
+        path:'/login',
+        component: Login,
+    },
+    {
+        path: '/app',
         component: App,
         routes:[
             {
-                path: "/home",
+                path: "/app/home",
                 component: Home,
             },
             {
-                path:'/person',
+                path:'/app/person',
                 component:Person
             },
         ]
@@ -31,15 +34,16 @@ const routes = [
         path: '/tabs',
         component: Tabs,
     },
+
 ];
 
 class RouterMap extends React.Component {
     render () {
         return (
             <BrowserRouter>
-                {routes.map((route, i) => (
-                    <RouteWithSubRoutes key={i} {...route} />
-                ))}
+                {routes.map((route, i) => {
+                    return <RouteWithSubRoutes key={i} {...route} />
+                })}
             </BrowserRouter>
         )
     }

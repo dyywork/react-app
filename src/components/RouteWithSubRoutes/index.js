@@ -13,16 +13,17 @@ import {Redirect, Route} from "react-router-dom";
 class RouteWithSubRoutes extends Component {
     render() {
         const route = this.props;
+        console.log(this.props,1)
         return (
             <Route
                 path={route.path}
                 render={props => (
-                    route.redirect?<div><Redirect
+                    route.redirect?<Redirect
                         path='/'
                         to={{
                             pathname: route.redirect,
                         }}
-                    /><route.component {...props} routes={route.routes} /></div>: <route.component {...props} routes={route.routes} />
+                    />: <route.component {...props} routes={route.routes} />
                 )}
             />
         );
