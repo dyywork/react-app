@@ -1,34 +1,29 @@
 import React from 'react';
 import {Button} from "antd-mobile";
 import Header from '@/components/Header'
-import {Link,withRouter} from "react-router-dom";
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import PageContentWrapper from '@/components/PageContentWrapper';
-import RouteWithSubRoutes from '@/components/RouteWithSubRoutes';
 
 class Home extends React.Component{
+    
     componentDidMount() {
-        console.log('home')
+    }
+
+    goTabs=()=> {
+        this.props.history.push('/app/tabs')
     }
 
     render() {
-        console.log(this.props)
-        const {routes,children} = this.props;
-        console.log(children)
-        console.log(routes)
         return (
-
             <PageHeaderWrapper header>
-                <Header title='home' icon='left' />
+                <Header title='home' />
                 <PageContentWrapper>
                     <div style={{height:'1000px'}}>
-                        <Button>Home</Button>
-                        <Link to='/tabs'>Tabs</Link>
+                        <Button type="primary" onClick={this.goTabs}>Tabs</Button>   
                     </div>
                 </PageContentWrapper>
             </PageHeaderWrapper>
-
         )
     }
 }
-export default withRouter(Home);
+export default Home;

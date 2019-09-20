@@ -1,8 +1,6 @@
 import React from 'react';
 import '@/App.css';
 import TabsMenu from '@/components/TabsMenu'
-import { withRouter } from 'react-router-dom'
-import RouteWithSubRoutes from '@/components/RouteWithSubRoutes'
 
 class App extends React.Component{
 
@@ -17,7 +15,9 @@ class App extends React.Component{
         const {routes} = this.props;
         let routesAll =[];
         routes.forEach(item => {
-            routesAll.push(item.path);
+            if (item.tab) {
+                routesAll.push(item.path);
+            }
         });
         this.props.history.listen((res)=> {
             this.setState({
@@ -30,16 +30,12 @@ class App extends React.Component{
     }
 
     render() {
-        const {routes} = this.props;
         const {hidden} = this.state;
         return (
             <div className="App" >
-                {routes.map((route, i) => (
-                    <RouteWithSubRoutes key={i} {...route} />
-                ))}
                 <TabsMenu hidden={hidden} {...this.props} />
             </div>
         );
-  }
+    }
 }
 export default App;

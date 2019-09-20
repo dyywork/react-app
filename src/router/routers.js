@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter  } from 'react-router-dom'
+import {BrowserRouter } from 'react-router-dom'
 import RouteWithSubRoutes from '@/components/RouteWithSubRoutes'
 import App from '@/App'
 import Home from '@/Tabs/Home'
@@ -8,10 +8,6 @@ import Tabs from '@/Tabs/Tabs'
 import Login from '@/page/Login'
 
 const routes = [
-    {
-      path:'/',
-        redirect: '/login'
-    },
     {
         path:'/login',
         component: Login,
@@ -22,27 +18,36 @@ const routes = [
         routes:[
             {
                 path: "/app/home",
+                tab: true,
                 component: Home,
             },
             {
                 path:'/app/person',
+                tab: true,
                 component:Person
+            },
+            {
+                path: '/app/tabs',
+                component: Tabs,
             },
         ]
     },
-    {
-        path: '/tabs',
-        component: Tabs,
-    },
+    
 
 ];
 
 class RouterMap extends React.Component {
     render () {
+        console.log(window.localStorage.getItem('login'))
         return (
             <BrowserRouter>
                 {routes.map((route, i) => {
-                    return <RouteWithSubRoutes key={i} {...route} />
+                return <div key={i}>
+                        <RouteWithSubRoutes key={i} {...route}/>
+                            {route.routes&&route.routes.map((route1, j)=> {
+                                return <RouteWithSubRoutes key={j} {...route1} />
+                            })}
+                        </div>
                 })}
             </BrowserRouter>
         )

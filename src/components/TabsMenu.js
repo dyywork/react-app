@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom'
 class TabsMenu extends Component {
     render() {
         const {children,hidden,location} =this.props;
-        console.log('children',children)
         return (
             <div style={{ position: 'fixed', width: '100%', bottom: 0 }}>
             <TabBar
