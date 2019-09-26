@@ -9,6 +9,10 @@ import Login from '@/page/Login'
 
 const routes = [
     {
+        path:'/',
+        redirect:'/login'
+    },
+    {
         path:'/login',
         component: Login,
     },
