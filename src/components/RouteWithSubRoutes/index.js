@@ -15,6 +15,7 @@ class RouteWithSubRoutes extends Component {
         const route = this.props;
         return (
             <Route
+            
                 path={route.path}
                 render={props => (
                     route.redirect?<Redirect
