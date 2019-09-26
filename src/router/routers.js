@@ -10,7 +10,7 @@ import Login from '@/page/Login'
 const routes = [
     {
         path:'/',
-        redirect:'/login'
+        redirect:'/login',
     },
     {
         path:'/login',
