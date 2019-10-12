@@ -2,24 +2,24 @@ import React from 'react';
 import '@/App.css';
 import TabsMenu from '@/components/TabsMenu'
 
-class App extends React.Component{
+class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             hidden: false,
         }
     }
 
     componentDidMount() {
-        const {routes} = this.props;
-        let routesAll =[];
+        const { routes } = this.props;
+        let routesAll = [];
         routes.forEach(item => {
             if (item.tab) {
                 routesAll.push(item.path);
             }
         });
-        this.props.history.listen((res)=> {
+        this.props.history.listen((res) => {
             this.setState({
                 hidden: !routesAll.includes(res.pathname)
             });
@@ -30,7 +30,7 @@ class App extends React.Component{
     }
 
     render() {
-        const {hidden} = this.state;
+        const { hidden } = this.state;
         return (
             <div className="App" >
                 <TabsMenu hidden={hidden} {...this.props} />

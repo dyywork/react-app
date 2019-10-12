@@ -1,34 +1,35 @@
 import React from 'react'
-import {BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import RouteWithSubRoutes from '@/components/RouteWithSubRoutes'
 import App from '@/App'
 import Home from '@/Tabs/Home'
 import Person from '@/Tabs/Person'
 import Tabs from '@/Tabs/Tabs'
 import Login from '@/page/Login'
+import BasicLayout from '@/layout/BasicLayout'
 
 const routes = [
     {
-        path:'/',
-        redirect:'/login',
+        path: '/',
+        component: BasicLayout,
     },
     {
-        path:'/login',
+        path: '/login',
         component: Login,
     },
     {
         path: '/app',
         component: App,
-        routes:[
+        routes: [
             {
                 path: "/app/home",
                 tab: true,
                 component: Home,
             },
             {
-                path:'/app/person',
+                path: '/app/person',
                 tab: true,
-                component:Person
+                component: Person
             },
             {
                 path: '/app/tabs',
@@ -36,22 +37,21 @@ const routes = [
             },
         ]
     },
-    
+
 
 ];
 
 class RouterMap extends React.Component {
-    render () {
-        console.log(window.localStorage.getItem('login'))
+    render() {
         return (
             <BrowserRouter>
                 {routes.map((route, i) => {
-                return <div key={i}>
-                        <RouteWithSubRoutes key={i} {...route}/>
-                            {route.routes&&route.routes.map((route1, j)=> {
-                                return <RouteWithSubRoutes key={j} {...route1} />
-                            })}
-                        </div>
+                    return <div key={i}>
+                        <RouteWithSubRoutes key={i} {...route} />
+                        {route.routes && route.routes.map((route1, j) => {
+                            return <RouteWithSubRoutes key={j} {...route1} />
+                        })}
+                    </div>
                 })}
             </BrowserRouter>
         )
