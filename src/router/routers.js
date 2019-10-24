@@ -11,14 +11,19 @@ import BasicLayout from '@/layout/BasicLayout'
 const routes = [
     {
         path: '/',
+        redirect: 'login',
         component: BasicLayout,
+        routes: [
+            {
+                path: '/login',
+                component: Login,
+            },
+        ]
     },
-    {
-        path: '/login',
-        component: Login,
-    },
+
     {
         path: '/app',
+        redirect: 'home',
         component: App,
         routes: [
             {
@@ -37,10 +42,24 @@ const routes = [
             },
         ]
     },
-
-
 ];
-
+console.log(window.location)
+const pathArr = window.location.pathname.split('/')
+const search = window.location.search
+routes.forEach(item => {
+    if (item.path.includes(pathArr[1])) {
+        item.redirect = pathArr[2]
+    }
+    if (search) {
+        console.log(search)
+        item.routes.forEach(itemChild => {
+            if (itemChild.path.includes(pathArr[3])) {
+                itemChild.path = itemChild.path + search
+            }
+        })
+    }
+})
+console.log(routes)
 class RouterMap extends React.Component {
     render() {
         return (

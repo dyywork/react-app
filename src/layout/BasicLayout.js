@@ -2,16 +2,17 @@ import React from 'react';
 
 class BasicLayout extends React.Component {
   componentDidMount() {
-    console.log(1)
-    const { history, location } = this.props
-    console.log(location)
+    const { location } = this.props
     if (location.pathname === '/') {
-      history.push('/login')
+      // history.push('/login')
     }
   }
   render() {
+    const { children } = this.props
     return (
-      <div></div>
+      <div>
+        {children}
+      </div>
     )
   }
 }

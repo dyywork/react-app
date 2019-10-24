@@ -10,7 +10,7 @@ class Home extends React.Component{
     }
 
     goTabs=()=> {
-        this.props.history.push('/app/tabs')
+        this.props.history.push('/app/tabs?id=1')
     }
 
     render() {

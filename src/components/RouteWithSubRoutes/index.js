@@ -7,23 +7,22 @@
  * 路由初始化
 **/
 
-import React, {Component} from 'react';
-import {Redirect, Route} from "react-router-dom";
+import React, { Component } from 'react';
+import { Redirect, Route } from "react-router-dom";
 
 class RouteWithSubRoutes extends Component {
     render() {
         const route = this.props;
         return (
             <Route
-            
                 path={route.path}
                 render={props => (
-                    route.redirect?<Redirect
+                    route.redirect ?<div><Redirect
                         path='/'
                         to={{
                             pathname: route.redirect,
                         }}
-                    />: <route.component {...props} routes={route.routes} />
+                    /> <route.component {...props} routes={route.routes} /></div> : <route.component {...props} routes={route.routes} />
                 )}
             />
         );

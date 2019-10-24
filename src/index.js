@@ -4,7 +4,7 @@ import './index.css';
 import '@/css/app.less'
 import RouterMap from '@/router/routers';
 import * as serviceWorker from './serviceWorker';
-
+import '@/utils/request'
 ReactDOM.render(<RouterMap />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
