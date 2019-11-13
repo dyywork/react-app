@@ -43,15 +43,16 @@ const routes = [
         ]
     },
 ];
-console.log(window.location)
+
 const pathArr = window.location.pathname.split('/')
 const search = window.location.search
 routes.forEach(item => {
-    if (item.path.includes(pathArr[1])) {
+    if (window.location.pathname === '/' || pathArr[0] === 'login') {
+        item.redirect = 'login'
+    } else if (item.path.includes(pathArr[1])) {
         item.redirect = pathArr[2]
     }
     if (search) {
-        console.log(search)
         item.routes.forEach(itemChild => {
             if (itemChild.path.includes(pathArr[3])) {
                 itemChild.path = itemChild.path + search
@@ -59,7 +60,7 @@ routes.forEach(item => {
         })
     }
 })
-console.log(routes)
+
 class RouterMap extends React.Component {
     render() {
         return (
